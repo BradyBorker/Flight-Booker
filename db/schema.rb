@@ -28,6 +28,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_220225) do
     t.index ["departure_airport_id"], name: "index_flights_on_departure_airport_id"
   end
 
-  add_foreign_key "flights", "arrival_airports"
-  add_foreign_key "flights", "departure_airports"
 end
