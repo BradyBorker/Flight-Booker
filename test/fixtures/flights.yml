@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure_airport: one
+  arrival_airport: one
+  start: 2023-08-03 18:02:25
+  flight_duration: 1.5
+
+two:
+  departure_airport: two
+  arrival_airport: two
+  start: 2023-08-03 18:02:25
+  flight_duration: 1.5
