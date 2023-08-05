@@ -15,7 +15,7 @@
     </div>
 
     <div>
-        <%= form.label :start, 'Date of Flight' %>
-        <%= form.select :start, @flight_dates.map { |date| [date, date] }%>
+        <%= form.label :date, 'Date of Flight' %>
+        <%= form.collection_select :date, Flight.distinct_dates, :date, :flight_date_formatted %>
     </div>
 <% end %>
