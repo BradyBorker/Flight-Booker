@@ -18,4 +18,17 @@
         <%= form.label :date, 'Date of Flight' %>
         <%= form.collection_select :date, Flight.distinct_dates, :date, :flight_date_formatted %>
     </div>
+
+    <%= form.submit 'Find Flights' %>
+<% end %>
+
+<% if @available_flights.any? %>
+    <h3>Available Flights:</h3>
+    <ul>
+        <% @available_flights.each do |flight| %>
+            <li><%= "#{flight.departure_airport.airport_code} -> #{flight.arrival_airport.airport_code} At: #{flight.time.strftime('%H:%M')}" %></li>
+        <% end %>
+    </ul>
+<% else %>
+    <h3>No Flights Available</h3>
 <% end %>

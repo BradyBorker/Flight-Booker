@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
     def index
         @flight = Flight.new
-        @flight_dates = Flight.distinct_dates
+        @available_flights = Flight.available_flights(params[:flight]) if params.key?(:flight)
     end
 end
