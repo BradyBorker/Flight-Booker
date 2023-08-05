@@ -23,12 +23,14 @@
 <% end %>
 
 <% if @available_flights.any? %>
-    <h3>Available Flights:</h3>
-    <ul>
-        <% @available_flights.each do |flight| %>
-            <li><%= "#{flight.departure_airport.airport_code} -> #{flight.arrival_airport.airport_code} At: #{flight.time.strftime('%H:%M')}" %></li>
-        <% end %>
-    </ul>
+    <!-- > Change url later <-->
+    <%= form_with url: "/flights", method: :get do |form|%>
+        <%= form.label :flight_selected, 'Available Flights' %>
+        <%= form.collection_radio_buttons :flight_selected, @available_flights, :id, :flight_radio_formatted%>
+
+        <%= form.hidden_field :passenger_count, value: params[:passenger_count] %>
+        <%= form.submit "Submit Flight" %>
+    <% end %>
 <% else %>
     <h3>No Flights Available</h3>
 <% end %>
