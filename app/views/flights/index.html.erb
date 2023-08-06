@@ -23,7 +23,7 @@
 <% end %>
 
 <% if @available_flights.any? %>
-    <!-- > Change url later <-->
+    <!-- Change url later -->
     <%= form_with url: "/flights", method: :get do |form|%>
         <%= form.label :flight_selected, 'Available Flights' %>
         <%= form.collection_radio_buttons :flight_selected, @available_flights, :id, :flight_radio_formatted%>
