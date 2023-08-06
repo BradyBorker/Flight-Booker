@@ -1,0 +1,36 @@
+<h1>Booking Information</h1>
+<%= form_with model: @booking do |form| %>
+    <%= fields_for :flight, @flight do |flight_form| %>
+        <div>
+            <%= flight_form.label :date, 'Date of Flight' %>
+            <%= flight_form.text_field :date, value: @flight.flight_date_formatted, readonly: true %>
+        </div>
+        <div>
+            <%= flight_form.label :departure_airport, 'Departure Airport' %>
+            <%= flight_form.text_field :departure_airport, value: @flight.departure_airport.airport_code, readonly: true %>
+        </div>
+        <div>
+            <%= flight_form.label :arrival_airport, 'Arrival Airport' %>
+            <%= flight_form.text_field :arrival_airport, value: @flight.arrival_airport.airport_code, readonly: true %>
+        </div>
+        <div>
+            <%= flight_form.label :id, 'Flight ID' %>
+            <%= flight_form.text_field :id, readonly: true %>
+        </div>
+    <% end %>
+
+    <% @passengers.each do |passenger| %>
+        <%= fields_for :passengers, passenger do |passenger_form| %>
+            <div>
+                <%= passenger_form.label :name, 'Passenger Name' %>
+                <%= passenger_form.text_field :name %>
+            </div>
+            <div>
+                <%= passenger_form.label :email, 'Passenger Email' %>
+                <%= passenger_form.text_field :email %>
+            </div>
+        <% end %>
+    <% end %>
+
+    <%= form.submit 'Submit' %>
+<% end %>

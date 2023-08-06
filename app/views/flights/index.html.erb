@@ -22,13 +22,12 @@
     <%= form.submit 'Find Flights' %>
 <% end %>
 
-<% if @available_flights.any? %>
-    <!-- Change url later -->
-    <%= form_with url: "/flights", method: :get do |form|%>
+<% if !@available_flights.nil? && @available_flights.any? %>
+    <%= form_with url: new_booking_path, method: :get do |form|%>
         <%= form.label :flight_selected, 'Available Flights' %>
         <%= form.collection_radio_buttons :flight_selected, @available_flights, :id, :flight_radio_formatted%>
 
-        <%= form.hidden_field :passenger_count, value: params[:passenger_count] %>
+        <%= form.hidden_field :passenger_count, value: params[:flight][:passenger_count] %>
         <%= form.submit "Submit Flight" %>
     <% end %>
 <% else %>
