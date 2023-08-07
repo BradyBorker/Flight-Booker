@@ -20,7 +20,7 @@
     <% end %>
 
     <% @passengers.each do |passenger| %>
-        <%= fields_for :passengers, passenger do |passenger_form| %>
+        <%= fields_for 'passengers[]', passenger do |passenger_form| %>
             <div>
                 <%= passenger_form.label :name, 'Passenger Name' %>
                 <%= passenger_form.text_field :name %>
