@@ -1,38 +1,39 @@
 <%= link_to 'Flight Picker', root_path %>
 
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Departure Airport</th>
+            <th scope="col">Arrival Airport</th>
+            <th scope="col">Flight Date</th>
+            <th scope="col">Flight ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= @flight.departure_airport.airport_code %></td>
+            <td><%= @flight.arrival_airport.airport_code %></td>
+            <td><%= @flight.flight_date_formatted %></td>
+            <td><%= @flight.id %></td>
+        </tr>
+    </tbody>
+</table>
+
 <h1>Booking Information</h1>
 <%= form_with model: @booking do |form| %>
-    <%= fields_for :flight, @flight do |flight_form| %>
+    
+    <%= form.fields_for :passengers, @passengers do |passenger_form| %>
         <div>
-            <%= flight_form.label :date, 'Date of Flight' %>
-            <%= flight_form.text_field :date, value: @flight.flight_date_formatted, readonly: true %>
+            <%= passenger_form.label :name, 'Passenger Name' %>
+            <%= passenger_form.text_field :name %>
         </div>
         <div>
-            <%= flight_form.label :departure_airport, 'Departure Airport' %>
-            <%= flight_form.text_field :departure_airport, value: @flight.departure_airport.airport_code, readonly: true %>
-        </div>
-        <div>
-            <%= flight_form.label :arrival_airport, 'Arrival Airport' %>
-            <%= flight_form.text_field :arrival_airport, value: @flight.arrival_airport.airport_code, readonly: true %>
-        </div>
-        <div>
-            <%= flight_form.label :id, 'Flight ID' %>
-            <%= flight_form.text_field :id, readonly: true %>
+            <%= passenger_form.label :email, 'Passenger Email' %>
+            <%= passenger_form.text_field :email %>
         </div>
     <% end %>
+    
 
-    <% @passengers.each do |passenger| %>
-        <%= fields_for 'passengers[]', passenger do |passenger_form| %>
-            <div>
-                <%= passenger_form.label :name, 'Passenger Name' %>
-                <%= passenger_form.text_field :name %>
-            </div>
-            <div>
-                <%= passenger_form.label :email, 'Passenger Email' %>
-                <%= passenger_form.text_field :email %>
-            </div>
-        <% end %>
-    <% end %>
-
+    <%= form.hidden_field :flight_id, value: @flight.id %>
     <%= form.submit 'Submit' %>
 <% end %>
