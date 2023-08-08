@@ -6,9 +6,7 @@
 
 <div>
     <h2>Flight Information</h2>
-    <%= "Departure Airport: #{@booking.flight.departure_airport.airport_code}" %>
-    <%= "Arrival Airport: #{@booking.flight.arrival_airport.airport_code}" %>
-    <%= "Takeoff Time: #{@booking.flight.time.strftime('%H:%M')}" %>
+    <%= @booking.flight.flight_radio_formatted %>
 </div>
 
 <div>
