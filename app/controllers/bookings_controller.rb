@@ -6,6 +6,12 @@ class BookingsController < ApplicationController
     end
 
     def create
+        @flight = Flight.find(params[:flight][:id])
+        booking = @flight.bookings.create!
+
+        params[:passengers].each do |passenger|
+            booking.passengers << Passenger.new(name: passenger[:name], email: passenger[:email])
+        end
     end
 
     def show
@@ -15,6 +21,6 @@ class BookingsController < ApplicationController
 
     def booking_params
         params.require(:booking).permit(flight: [:id, :date, :departure_airport, :arrival_airport],
-                                        passenger: [:id, :name, :email])
+                                        passengers: [:id, :name, :email])
     end
 end
