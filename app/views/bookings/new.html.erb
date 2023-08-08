@@ -1,3 +1,5 @@
+<%= link_to 'Flight Picker', root_path %>
+
 <h1>Booking Information</h1>
 <%= form_with model: @booking do |form| %>
     <%= fields_for :flight, @flight do |flight_form| %>
