@@ -7,14 +7,17 @@ class BookingsController < ApplicationController
 
     def create
         @flight = Flight.find(params[:flight][:id])
-        booking = @flight.bookings.create!
+        @booking = @flight.bookings.create!
 
         params[:passengers].each do |passenger|
-            booking.passengers << Passenger.new(name: passenger[:name], email: passenger[:email])
+            @booking.passengers << Passenger.new(name: passenger[:name], email: passenger[:email])
         end
+
+        redirect_to booking_path(@booking)
     end
 
     def show
+        @booking = Booking.find(params[:id])
     end
 
     private

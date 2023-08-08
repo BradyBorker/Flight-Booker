@@ -1,0 +1,22 @@
+<h1>Booking Information</h1>
+
+<div>
+    <p><%= "Booking ID: #{@booking.id}" %></p>
+</div>
+
+<div>
+    <h2>Flight Information</h2>
+    <%= "Departure Airport: #{@booking.flight.departure_airport.airport_code}" %>
+    <%= "Arrival Airport: #{@booking.flight.arrival_airport.airport_code}" %>
+    <%= "Takeoff Time: #{@booking.flight.time.strftime('%H:%M')}" %>
+</div>
+
+<div>
+    <h2>Passenger Information:</h2>
+    <% @booking.passengers.each do |passenger| %>
+        <div>
+            <%= "Passenger Name: #{passenger.name}" %>
+            <%= "Passenger Email: #{passenger.email}" %>
+        </div>
+    <% end %>
+</div>
