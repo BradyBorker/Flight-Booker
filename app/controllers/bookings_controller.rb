@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
 
         if @booking
             @booking.passengers.each do |passenger|
-                PassengerMailer.with(passenger: passenger, flight_id: @flight.id).confirmation_email.deliver_later
+                PassengerMailer.with(passenger: passenger, booking_id: @booking.id).confirmation_email.deliver_later
             end
 
             redirect_to booking_path(@booking)
